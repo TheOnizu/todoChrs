@@ -104,6 +104,15 @@
   transform: translateZ(0);
 }
 
+.todoItems {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: .3rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
 .logo {
   position: relative;
 }

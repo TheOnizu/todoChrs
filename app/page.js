@@ -14,9 +14,21 @@ export default function Home() {
     const newTodo = {
       id: todos.length + 1,
       text: formData.todo,
+      done: false,
     };
     addTodo(newTodo);
     e.target.reset();
+  };
+
+  const handleToggleTodo = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, done: !todo.done };
+        }
+        return todo;
+      }),
+    );
   };
 
   const removeTodo = (id) => {
@@ -30,20 +42,26 @@ export default function Home() {
       <section className={styles.section}>
         <ul>
           {todos?.map((todo) => (
-            <li key={todo.id}>
+            <li key={todo.id} className={styles.todoItems}>
               {todo.text}
               <button type="button">remove</button>
+              <input
+                type="checkbox"
+                checked={todo.done}
+                onChange={() => {
+                  handleToggleTodo(todo.id);
+                }}
+              />
             </li>
           ))}
         </ul>
+      </section>
+      <footer className={styles.footer}>
         <form action="#" onSubmit={handleAddTodo}>
           <label htmlFor="todo">Todo</label>
           <input type="text" name="todo" placeholder="add todo" />
           <button type="submit">add</button>
         </form>
-      </section>
-      <footer className={styles.footer}>
-        <button>add Todo</button>
       </footer>
     </main>
   );
