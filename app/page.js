@@ -44,7 +44,14 @@ export default function Home() {
           {todos?.map((todo) => (
             <li key={todo.id} className={styles.todoItems}>
               {todo.text}
-              <button type="button">remove</button>
+              <button
+                type="button"
+                onClick={() => {
+                  removeTodo(todo.id);
+                }}
+              >
+                remove
+              </button>
               <input
                 type="checkbox"
                 checked={todo.done}
